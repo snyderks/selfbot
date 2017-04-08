@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"log"
 	"net/http"
 
@@ -13,17 +12,17 @@ import (
 var db *sql.DB
 
 func init() {
-	dsn, err := ioutil.ReadFile("dsn.txt")
-	db, err = sql.Open("mysql", string(dsn))
+	// dsn, err := ioutil.ReadFile("dsn.txt")
+	// db, err = sql.Open("mysql", string(dsn))
 
-	if err != nil {
-		panic(err.Error())
-	}
+	// if err != nil {
+	// 	panic(err.Error())
+	// }
 
-	err = db.Ping()
-	if err != nil {
-		panic(err.Error())
-	}
+	// err = db.Ping()
+	// if err != nil {
+	// 	panic(err.Error())
+	// }
 }
 
 func main() {

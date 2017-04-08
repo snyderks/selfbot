@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -9,7 +10,12 @@ import (
 
 // CreateResponse holds the json structure for Create()
 type CreateResponse struct {
-	Testval string `json:"test"`
+	Status  string `json:"status"`
+	Message string `json:"message"`
+}
+
+type CreateRequest struct {
+	Token string `json:"Token"`
 }
 
 // Index responds with Hello World to view if server is running
@@ -21,9 +27,21 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 // Create creates a new selfbot if one is not created already
 func Create(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+	decoder := json.NewDecoder(r.Body)
+	var t CreateRequest
+	err := decoder.Decode(&t)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Fprint(w, t)
+}
+
+// Delete deletes a selfbot
+func Delete(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	user := vars["userID"]
-	fmt.Fprint(w, "Bot created successfully\n"+user)
+	fmt.Fprint(w, "Bot deleted successfully\n"+user)
 }
 
 // Edit edits a user's config

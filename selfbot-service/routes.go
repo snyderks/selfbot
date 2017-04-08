@@ -27,6 +27,12 @@ var routes = Routes{
 		Create,
 	},
 	Route{
+		"Deletes a bot",
+		"DELETE",
+		"/delete",
+		Delete,
+	},
+	Route{
 		"Edit config",
 		"PATCH",
 		"/edit",
