@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// NewRouter starts a new router
 func NewRouter() *mux.Router {
 
 	router := mux.NewRouter().StrictSlash(true)

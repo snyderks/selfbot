@@ -2,6 +2,7 @@ package main
 
 import "net/http"
 
+// Route defines the structure for defining routes
 type Route struct {
 	Name        string
 	Method      string
@@ -9,6 +10,7 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
+// Routes holds an array of Routes
 type Routes []Route
 
 var routes = Routes{
@@ -31,9 +33,21 @@ var routes = Routes{
 		Edit,
 	},
 	Route{
-		"Edit config",
-		"PATCH",
+		"Restart bot",
+		"GET",
 		"/restart",
 		Restart,
+	},
+	Route{
+		"Start bot",
+		"GET",
+		"/start",
+		Start,
+	},
+	Route{
+		"Stop bot",
+		"GET",
+		"/stop",
+		Stop,
 	},
 }

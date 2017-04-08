@@ -9,6 +9,7 @@ import (
 
 // CreateResponse holds the json structure for Create()
 type CreateResponse struct {
+	Testval string `json:"test"`
 }
 
 // Index responds with Hello World to view if server is running
@@ -25,16 +26,30 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Bot created successfully\n"+user)
 }
 
-// Edit edit's a user's config
+// Edit edits a user's config
 func Edit(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	user := vars["userID"]
 	fmt.Fprint(w, "Config edited successfully\n"+user)
 }
 
-// Restart restart's a user's selfbot process
+// Restart restarts a user's selfbot process
 func Restart(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	user := vars["userID"]
 	fmt.Fprint(w, "Process restarted successfully\n"+user)
+}
+
+// Start starts a user's selfbot process
+func Start(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	user := vars["userID"]
+	fmt.Fprint(w, "Process started successfully\n"+user)
+}
+
+// Stop stops a user's selfbot process
+func Stop(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	user := vars["userID"]
+	fmt.Fprint(w, "Process stopped successfully\n"+user)
 }
