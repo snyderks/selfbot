@@ -15,7 +15,7 @@ type CreateResponse struct {
 }
 
 type CreateRequest struct {
-	Token string `json:"Token"`
+	Token string `json:"token"`
 }
 
 // Index responds with Hello World to view if server is running
@@ -35,6 +35,11 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	fmt.Fprint(w, t)
+	user, err := GetUserInfo(t.Token)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(user)
 }
 
 // Delete deletes a selfbot
